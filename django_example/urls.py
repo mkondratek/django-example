@@ -15,13 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
-
-from notes.views import NoteDelete, NoteUpdate, NoteCreate
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'note/add/$', NoteCreate.as_view(), name='note-add'),
-    url(r'note/(?P<pk>[0-9]+)/$', NoteUpdate.as_view(), name='note-update'),
-    url(r'note/(?P<pk>[0-9]+)/delete/$', NoteDelete.as_view(), name='note-delete'),
+    url(r'^notes/', include('notes.urls')),
 ]
