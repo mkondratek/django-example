@@ -1,3 +1,15 @@
 <h1>Note Details</h1>
+
+<hr>
+
 <h2>{{ note.title }}</h2>
 <p>{{ note.body }}</p>
+
+<hr>
+
+<a href="{% url "note-update" note.pk %}">Update</a>
+or
+<a href="{% url "note-delete" note.pk %}">Delete</a>
+</br>
+</br>
+<a href="{% url "note-list" %}">Return to list</a>
