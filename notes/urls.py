@@ -1,11 +1,11 @@
-from django.conf.urls import url
+from django.urls import path
 
 from notes.views import NoteListView, NoteDetailView, NoteCreate, NoteUpdate, NoteDelete
 
 urlpatterns = [
-    url(r'^$', NoteListView.as_view(), name='note-list'),
-    url(r'^(?P<pk>\d+)/$', NoteDetailView.as_view(), name='note-detail'),
-    url(r'^add/$', NoteCreate.as_view(), name='note-add'),
-    url(r'^(?P<pk>\d+)/$', NoteUpdate.as_view(), name='note-update'),
-    url(r'^(?P<pk>\d+)/delete/$', NoteDelete.as_view(), name='note-delete'),
+    path('', NoteListView.as_view(), name='note-list'),
+    path('<int:pk>/', NoteDetailView.as_view(), name='note-detail'),
+    path('add/', NoteCreate.as_view(), name='note-add'),
+    path('<int:pk>/update/', NoteUpdate.as_view(), name='note-update'),
+    path('<int:pk>/delete/', NoteDelete.as_view(), name='note-delete'),
 ]

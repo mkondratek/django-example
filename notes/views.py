@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
 
 from notes.models import Note
 
@@ -13,6 +14,7 @@ class NoteCreate(CreateView):
 class NoteUpdate(UpdateView):
     model = Note
     fields = ['title', 'body']
+    template_name_suffix = '_update_form'
 
 
 class NoteDelete(DeleteView):

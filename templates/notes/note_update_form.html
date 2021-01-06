@@ -1,7 +1,7 @@
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit"/>
+    <input type="submit" value="Update">
 </form>
 <hr>
 <a href="{% url "note-list" %}">Return to list</a>
