@@ -1,0 +1,22 @@
+<h1>Topic Details</h1>
+
+<hr>
+
+{% if topic.parent %}
+    <h3>Parent: <a href="{% url 'topic-detail' topic.parent.pk %}">{{ topic.parent }}</a></h3>
+{% else %}
+    <h3>This is a <b>root</b> topic</h3>
+{% endif %}
+
+<h2>Title: {{ topic.title }}</h2>
+
+<h4>Created by: {{ topic.created_by }}</h4>
+
+<hr>
+
+<a href="{% url "topic-update" topic.pk %}">Update</a>
+or
+<a href="{% url "topic-delete" topic.pk %}">Delete</a>
+</br>
+</br>
+<a href="{% url "topic-list" %}">Return to topic list</a>

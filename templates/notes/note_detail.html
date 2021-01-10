@@ -2,8 +2,9 @@
 
 <hr>
 
-<h2>{{ note.title }}</h2>
-<p>{{ note.body }}</p>
+<h2>Title: {{ note.title }}</h2>
+<h3>Topic: <a href="{% url 'topic-detail' note.topic.pk %}">{{ note.topic.title }}</a></h3>
+<p>Body: {{ note.body }}</p>
 
 <hr>
 
@@ -12,4 +13,4 @@ or
 <a href="{% url "note-delete" note.pk %}">Delete</a>
 </br>
 </br>
-<a href="{% url "note-list" %}">Return to list</a>
+<a href="{% url "note-list" %}">Return to note list</a>

@@ -9,7 +9,7 @@ from notes.models import Note
 
 class NoteCreate(LoginRequiredMixin, CreateView):
     model = Note
-    fields = ['title', 'body']
+    fields = ['title', 'topic', 'body']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -18,7 +18,7 @@ class NoteCreate(LoginRequiredMixin, CreateView):
 
 class NoteUpdate(UserPassesTestMixin, UpdateView):
     model = Note
-    fields = ['title', 'body']
+    fields = ['title', 'topic', 'body']
     template_name_suffix = '_update_form'
 
     def test_func(self):
@@ -30,7 +30,7 @@ class NoteDelete(UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('note-list')
 
     def test_func(self):
-        return self.request.is_superuser or self.request.user == self.object.created_by
+        return self.request.user.is_superuser or self.request.user == self.get_object().created_by
 
 
 class NoteListView(ListView):

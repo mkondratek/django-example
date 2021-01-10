@@ -1,0 +1,16 @@
+<h1>Topics</h1>
+<hr>
+{% if object_list %}
+    <ol>
+        {% for topic in object_list %}
+            <li><a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a></li>
+        {% endfor %}
+    </ol>
+{% else %}
+    Empty list.
+{% endif %}
+
+<hr>
+<a href="{% url 'topic-add' %}">Add topic</a>
+or
+<a href="{% url "note-list" %}">go to note list</a>
