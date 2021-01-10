@@ -1,7 +1,18 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
-<hr>
-<a href="{% url "note-list" %}">Return to note list</a>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Note Update</h1>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="button" value="Cancel"
+               onclick="window.history.go(-1);"/>
+        <input type="submit" value="Update">
+    </form>
+{% endblock %}
+
+{% block side_menu %}
+    <li><a href="{% url "note-list" %}">Note list</a></li>
+    <li><a href="{% url "topic-list" %}">Topic list</a></li>
+{% endblock %}

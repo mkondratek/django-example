@@ -1,8 +1,18 @@
-<h3>Topic Deletion Confirmation</h3>
-<p>Topic to be deleted: <b>{{ object.title }}</b></p>
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="button" value="Cancel"
-           onclick="window.history.go(-1);"/>
-    <input type="submit" value="Delete"/>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Topic Deletion Confirmation</h1>
+    <hr>
+    <p>Topic to be deleted: <b>{{ object.title }}</b></p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="button" value="Cancel"
+               onclick="window.history.go(-1);"/>
+        <input type="submit" value="Delete"/>
+    </form>
+{% endblock %}
+
+{% block side_menu %}
+    <li><a href="{% url "note-list" %}">Note list</a></li>
+    <li><a href="{% url "topic-list" %}">Topic list</a></li>
+{% endblock %}

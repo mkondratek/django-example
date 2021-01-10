@@ -1,16 +1,18 @@
-<h1>Note Details</h1>
+{% extends "base.html" %}
 
-<hr>
+{% block content %}
+    <h1>Note Details</h1>
+    <hr>
+    <h2>Title: <b>{{ note.title }}</b></h2>
+    <h5>Topic: <a href="{% url 'topic-detail' note.topic.pk %}"><b>{{ note.topic.title }}</b></a></h5>
+    <h5>Created by: <b>{{ note.created_by }}</b></h5>
+    <hr>
+    <p>{{ note.body }}</p>
+{% endblock %}
 
-<h2>Title: {{ note.title }}</h2>
-<h3>Topic: <a href="{% url 'topic-detail' note.topic.pk %}">{{ note.topic.title }}</a></h3>
-<p>Body: {{ note.body }}</p>
-
-<hr>
-
-<a href="{% url "note-update" note.pk %}">Update</a>
-or
-<a href="{% url "note-delete" note.pk %}">Delete</a>
-</br>
-</br>
-<a href="{% url "note-list" %}">Return to note list</a>
+{% block side_menu %}
+    <li><a href="{% url "note-list" %}">Note list</a></li>
+    <li><a href="{% url "topic-list" %}">Topic list</a></li>
+    <li><a href="{% url "note-update" note.pk %}">Update</a></li>
+    <li><a href="{% url "note-delete" note.pk %}">Delete</a></li>
+{% endblock %}

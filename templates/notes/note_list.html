@@ -1,17 +1,20 @@
-<h1>Notes</h1>
-<hr>
-{% if object_list %}
-    <ol>
-        {% for note in object_list %}
-            <li><a href="{% url 'note-detail' note.pk %}">{{ note.title }}</a></li>
-        {% endfor %}
-    </ol>
-{% else %}
-    Empty list.
-{% endif %}
+{% extends "base.html" %}
 
-<hr>
-<a href="{% url 'note-add' %}">Add note</a>
-or
-<a href="{% url "topic-list" %}">go to topic list</a>
+{% block content %}
+    <h1>Note list</h1>
+    <hr>
+    {% if object_list %}
+        <ol>
+            {% for note in object_list %}
+                <li><a href="{% url 'note-detail' note.pk %}">{{ note.title }}</a></li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        Empty list.
+    {% endif %}
+{% endblock %}
 
+{% block side_menu %}
+    <li><a href="{% url "topic-list" %}">Topic list</a></li>
+    <li><a href="{% url 'note-add' %}">Add note</a></li>
+{% endblock %}
