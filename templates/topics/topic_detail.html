@@ -11,6 +11,15 @@
     {% endif %}
     <h5>Created by: <b>{{ topic.created_by }}</b></h5>
     <h5>Public: <b>{{ topic.is_public }}</b></h5>
+    <hr>
+    <h2>Notes:</h2>
+    <ol>
+        {% for note in notes %}
+            <li><a href="{% url 'note-detail' note.pk %}">{{ note.title }}</a></li>
+        {% empty %}
+            No notes yet.
+        {% endfor %}
+    </ol>
 {% endblock %}
 
 {% block side_menu %}

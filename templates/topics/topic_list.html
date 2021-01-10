@@ -1,14 +1,22 @@
 {% extends "base.html" %}
+{% load mptt_tags %}
 
 {% block content %}
     <h1>Topics</h1>
     <hr>
     {% if object_list %}
-        <ol>
-            {% for topic in object_list %}
-                <li><a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a></li>
-            {% endfor %}
-        </ol>
+        <ul>
+            {% recursetree object_list %}
+                <li>
+                    <a href="{% url 'topic-detail' node.pk %}">{{ node.title }}</a>
+                    {% if not node.is_leaf_node %}
+                        <ul class="children">
+                            {{ children }}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endrecursetree %}
+        </ul>
     {% else %}
         Empty list.
     {% endif %}
