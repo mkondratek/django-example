@@ -18,6 +18,7 @@ class Note(TimeStampedModel):
 class Topic(MPTTModel, TitleSlugDescriptionModel, TimeStampedModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
                             on_delete=models.CASCADE)
+    is_public = models.BooleanField(default=True)
 
     class MPTTMeta:
         order_insertion_by = ['title']

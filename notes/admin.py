@@ -8,4 +8,5 @@ admin.site.register(Note)
 
 @admin.register(Topic)
 class TopicAdmin(DjangoMpttAdmin):
-    pass
+    list_display = ['title', 'is_public']
+    list_editable = ['is_public']
